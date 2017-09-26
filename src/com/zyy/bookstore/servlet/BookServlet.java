@@ -36,6 +36,36 @@ public class BookServlet extends HttpServlet {
         }
     }
 
+    protected void cartClear(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ShoppingCart cart = BookStoreWeb.getShoppingCart(request);
+        bookService.cartClear(cart);
+        request.getRequestDispatcher("/WEB-INF/pages/empty.jsp").forward(request,response);
+
+    }
+    protected void cartRemove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取id
+        String idStr=request.getParameter("id");
+
+        int id=-1;
+        try {
+            id=Integer.parseInt(idStr);
+        } catch (NumberFormatException e) {}
+
+        ShoppingCart cart = BookStoreWeb.getShoppingCart(request);
+        bookService.removeItemFromShoppingCart(cart,id);
+
+        if(cart.isEmpty()){
+            request.getRequestDispatcher("/WEB-INF/pages/empty.jsp").forward(request,response);
+        }else 
+        //重新回到购物车页面
+        request.getRequestDispatcher("/WEB-INF/pages/cart.jsp").forward(request,response);
+
+    }
+    protected void toCartPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //服务器转发
+        request.getRequestDispatcher("/WEB-INF/pages/cart.jsp").forward(request,response);
+    }
+
     protected void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.获取商品id
         String idStr = request.getParameter("id");

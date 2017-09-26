@@ -57,8 +57,8 @@
             您已经将${param.title}加入购物车成功！
             <br><br>
         </c:if>
-        <c:if test="${!empty sessionScope.cart}">
-            您的购物车中有${sessionScope.cart.bookNumber}本书,<a href="cart.jsp?pageNo=${bookpage.pageNo}">查看购物车</a>
+        <c:if test="${!empty sessionScope.cart.books}">
+            您的购物车中有${sessionScope.cart.bookNumber}本书,<a href="BookServlet?method=toCartPage&pageNo=${bookpage.pageNo}">查看购物车</a>
         </c:if>
         <br><br>
         <form action="BookServlet?method=getBooks" method="post">

@@ -3,6 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <context-param>
+        <param-name>encoding</param-name>
+        <param-value>utf-8</param-value>
+    </context-param>
     <servlet>
         <servlet-name>BookServlet</servlet-name>
         <servlet-class>com.zyy.bookstore.servlet.BookServlet</servlet-class>

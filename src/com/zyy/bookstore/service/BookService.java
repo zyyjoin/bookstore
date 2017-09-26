@@ -24,4 +24,12 @@ public class BookService {
         }
         return false;
     }
+
+    public void removeItemFromShoppingCart(ShoppingCart cart, int id) {
+        cart.removeItem(id);
+    }
+
+    public void cartClear(ShoppingCart cart) {
+        cart.clear();
+    }
 }
